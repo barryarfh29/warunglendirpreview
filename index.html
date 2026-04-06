@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WarungLendir VIP - Official Telegram VIP</title>
+    <title>WarungLendir VIP - Official Website</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -12,381 +12,661 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         
+        /* --- GLOBAL BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body { 
             background-color: #0b0e14; 
             color: #e2e8f0; 
             font-family: 'Inter', sans-serif; 
-            scroll-behavior: smooth; 
-            margin: 0;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* --- IPHONE UI COMPONENTS --- */
-        .iphone-status-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 25px 5px 25px; font-size: 11px; font-weight: bold;
-            color: white; position: absolute; top: 0; width: 100%; z-index: 40;
-        }
-        .iphone-header-chat {
-            background: rgba(31, 41, 55, 0.9); backdrop-filter: blur(10px);
-            padding: 45px 15px 10px 15px; display: flex; align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .online-dot {
-            width: 8px; height: 8px; background: #22c55e;
-            border-radius: 50%; display: inline-block;
-            box-shadow: 0 0 10px #22c55e; margin-right: 5px;
+        /* --- IPHONE CHAT SMOOTH SCROLLING --- */
+        .chat-container-smooth {
+            height: 510px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 100px;
         }
 
-        /* --- MAGNETIC POP & NEON FLASH --- */
-        .btn-cyber {
-            background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%) !important;
-            color: #ffffff !important;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
+        .chat-container-smooth::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-container-smooth::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-container-smooth::-webkit-scrollbar-thumb {
+            background: rgba(14, 165, 233, 0.3);
+            border-radius: 10px;
+        }
+
+        /* --- IPHONE MOCKUP ELEMENTS --- */
+        .iphone-mockup-frame {
+            position: relative; 
+            width: 325px; 
+            height: 720px; 
+            background: #000; 
+            border: 12px solid #1e293b; 
+            border-radius: 3.5rem;
+            box-shadow: 0 0 60px rgba(0,0,0,0.9);
+            overflow: hidden;
+        }
+
+        .iphone-top-status {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 14px 25px 5px 25px; 
+            font-size: 11px; 
+            font-weight: bold;
+            color: white; 
+            position: absolute; 
+            top: 0; 
+            width: 100%; 
+            z-index: 70;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .iphone-chat-header {
+            background: rgba(31, 41, 55, 0.95); 
+            backdrop-filter: blur(15px);
+            padding: 45px 15px 12px 15px; 
+            display: flex; 
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             position: relative;
-            z-index: 50;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: brightness(1.1);
+            z-index: 60;
         }
-        .btn-dug:active {
-            transform: scale(0.92) !important;
+
+        .online-status-dot {
+            width: 7px; 
+            height: 7px; 
+            background: #22c55e;
+            border-radius: 50%; 
+            display: inline-block;
+            box-shadow: 0 0 8px #22c55e; 
+            margin-right: 5px;
+        }
+
+        /* --- INTERACTIVE BUTTONS --- */
+        .btn-dug-effect:active {
+            transform: scale(0.92) !important; 
             filter: brightness(1.8) !important;
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.8) !important;
             transition: all 0.05s;
         }
 
-        /* --- NOTIFIKASI MELAYANG (SOCIAL PROOF) --- */
-        #purchase-notification {
-            position: fixed; bottom: 20px; left: 20px;
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(14, 165, 233, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 12px 20px; border-radius: 15px;
-            z-index: 1000; display: flex; align-items: center; gap: 12px;
-            transform: translateY(150%);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .btn-premium-style {
+            background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%) !important;
+            color: #ffffff !important; 
+            font-weight: 900; 
+            text-transform: uppercase;
+            font-style: italic; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
         }
-        #purchase-notification.show { transform: translateY(0); }
 
-        /* --- KECERAHAN MAKSIMAL PC --- */
-        .video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
-        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) contrast(1.1); }
-        .video-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(11, 14, 20, 0.3), rgba(11, 14, 20, 0.5)); z-index: -1; }
+        /* --- BACKGROUND SYSTEM --- */
+        .video-bg-container { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            overflow: hidden; 
+        }
 
-        /* --- FIX JUDUL PC --- */
-        .title-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; width: 100%; }
-        .animate-gradient {
+        .video-bg-container video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: brightness(0.65) contrast(1.1); 
+        }
+
+        .video-bg-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(to bottom, rgba(11, 14, 20, 0.4), rgba(11, 14, 20, 0.6)); 
+            z-index: -1; 
+        }
+
+        /* --- ANIMATION ENGINE --- */
+        .text-gradient-animate {
             background: linear-gradient(to right, #38bdf8, #2dd4bf, #6366f1, #38bdf8);
-            background-size: 200% auto; -webkit-background-clip: text !important;
-            background-clip: text !important; -webkit-text-fill-color: transparent !important;
-            animation: gradient-flow 3s linear infinite; display: inline-block !important; min-width: 120px; 
+            background-size: 200% auto; 
+            -webkit-background-clip: text !important;
+            background-clip: text !important; 
+            -webkit-text-fill-color: transparent !important;
+            animation: flow-gradient 3s linear infinite;
         }
-        @keyframes gradient-flow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-        
-        /* --- BADGE ANIMATION --- */
-        .animate-pulse-glow { animation: pulse-glow 2s infinite; }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(244, 63, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+        @keyframes flow-gradient { 
+            0% { background-position: 0% center; } 
+            100% { background-position: 200% center; } 
         }
 
-        .bg-glass-premium { background: rgba(22, 28, 45, 0.55) !important; backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .chat-container::-webkit-scrollbar { width: 0px; }
-        .sensor-blur { filter: blur(5px); opacity: 0.9; }
+        .slogan-pulse {
+            animation: pulse-neon 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-neon {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 0px rgba(56, 189, 248, 0); }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(56, 189, 248, 0.9), 0 0 30px rgba(56, 189, 248, 0.4); color: #ffffff; }
+        }
 
-        /* --- PRICE LIST HOVER --- */
-        .price-item { transition: all 0.3s ease; display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); text-decoration: none; color: inherit; }
-        .price-item:hover { background: rgba(14, 165, 233, 0.15); padding-left: 20px; border-radius: 8px; }
+        .bg-glass-card { 
+            background: rgba(22, 28, 45, 0.65) !important; 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
 
-        /* --- GALLERY GRID --- */
-        .gallery-item-wrapper { position: relative; width: 100%; height: 500px; border-radius: 2.5rem; overflow: visible; background: #000; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.5s ease; margin-top: 20px; }
-        .image-container { width: 100%; height: 100%; overflow: hidden; border-radius: 2.5rem; }
-        .gallery-item-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0.6; transition: all 0.8s ease; }
-        .gallery-item-wrapper:hover img { opacity: 0.9; transform: scale(1.05); }
-        .badge-exclusive { position: absolute; top: -15px; right: 20px; background: linear-gradient(90deg, #f43f5e 0%, #fb923c 100%); padding: 6px 18px; border-radius: 99px; z-index: 60; font-size: 10px; }
+        /* --- NOTIFIKASI --- */
+        #purchase-notif {
+            position: fixed; 
+            bottom: 20px; 
+            left: 20px;
+            background: rgba(15, 23, 42, 0.95); 
+            border: 1px solid rgba(14, 165, 233, 0.4);
+            backdrop-filter: blur(12px); 
+            padding: 12px 18px; 
+            border-radius: 15px;
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            transform: translateY(180%); 
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        #purchase-notif.active { 
+            transform: translateY(0); 
+        }
+
+        /* --- CATALOGUE: BADGE & BINGKAI --- */
+        .gallery-monster-container {
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .badge-monster-overlap {
+            position: absolute;
+            top: 12px; 
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 110;
+            background: linear-gradient(90deg, #f43f5e 0%, #fb923c 100%);
+            color: white;
+            padding: 9px 28px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.6);
+            white-space: nowrap;
+            border: 2px solid #0b0e14;
+        }
+
+        .gallery-monster-wrapper { 
+            position: relative; 
+            width: 100%; 
+            height: 520px; 
+            border-radius: 2.8rem; 
+            overflow: hidden; 
+            background: #1a1a1a; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        .gallery-monster-wrapper img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            opacity: 0.75; 
+            transition: all 0.8s; 
+        }
+
+        .gallery-monster-wrapper:hover img { 
+            opacity: 1; 
+            transform: scale(1.08); 
+        }
+
+        /* --- PRICE LIST SIDEBAR --- */
+        .sidebar-price-item { 
+            transition: all 0.3s ease; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 14px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        .sidebar-price-item:hover { 
+            background: rgba(14, 165, 233, 0.2); 
+            padding-left: 22px; 
+            border-radius: 10px; 
+        }
+
+        .blur-sensor { 
+            filter: blur(6px); 
+            opacity: 0.85; 
+        }
     </style>
 </head>
 <body>
 
-    <div id="purchase-notification">
-        <div class="w-10 h-10 bg-sky-500/20 rounded-full flex items-center justify-center text-sky-400"><i class="fa-solid fa-bell"></i></div>
-        <div><p id="notif-text" class="text-[11px] text-white font-medium"></p><p class="text-[9px] text-sky-400 font-bold uppercase tracking-widest">Baru saja join</p></div>
+    <div id="purchase-notif">
+        <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-sky-500/50">
+            <img src="assets/bela-admin.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100?text=BELA'">
+        </div>
+        <div>
+            <p id="notif-user-text" class="text-[11px] text-white font-black italic"></p>
+            <p class="text-[8px] text-sky-400 font-bold uppercase tracking-[0.2em]">Baru saja bergabung VIP</p>
+        </div>
     </div>
 
-    <div class="video-wrapper">
-        <video autoplay muted loop playsinline shadow-xl><source src="assets/bg-cewe.mp4" type="video/mp4"></video>
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline shadow-xl>
+            <source src="assets/bg-cewe.mp4" type="video/mp4">
+        </video>
     </div>
-    <div class="video-overlay"></div>
+    <div class="video-bg-overlay"></div>
 
     <header class="relative pt-24 pb-12 text-center z-10" data-aos="fade-down">
-        <div class="flex justify-center mb-6">
-             <div class="w-16 h-16 flex items-center justify-center bg-sky-500/10 rounded-2xl border border-sky-500/20 shadow-xl"><i class="fa-solid fa-gem text-3xl text-sky-400"></i></div>
+        <div class="flex justify-center mb-8">
+             <div class="w-20 h-20 flex items-center justify-center bg-sky-500/10 rounded-3xl border-2 border-sky-500/20 shadow-2xl">
+                <i class="fa-solid fa-gem text-4xl text-sky-400"></i>
+             </div>
         </div>
-        <div class="title-container px-4">
-            <h1 class="text-5xl md:text-8xl font-black text-white italic uppercase leading-none">WARUNGLENDIR</h1>
-            <h1 class="text-5xl md:text-8xl font-black italic uppercase animate-gradient leading-none">VIP</h1>
+        <div class="flex flex-wrap justify-center items-center gap-5 px-6">
+            <h1 class="text-6xl md:text-9xl font-black text-white italic uppercase leading-none tracking-tighter">WARUNGLENDIR</h1>
+            <h1 class="text-6xl md:text-9xl font-black italic uppercase text-gradient-animate leading-none tracking-tighter">VIP</h1>
         </div>
-        <p class="text-slate-400 text-sm md:text-lg max-w-2xl mx-auto px-6 font-medium italic mt-8">"Sistem Bot Cerdas: Akses VVIP Langsung Aktif 24/7 Tanpa Menunggu Admin"</p>
+        <p class="text-slate-300 text-sm md:text-2xl mt-8 italic slogan-pulse font-bold tracking-widest uppercase px-4">
+            "Sistem Bot Otomatis: Akses Langsung Terbuka 24 Jam Non-Stop"
+        </p>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-10 relative z-10">
+    <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
         
         <div class="flex justify-center" data-aos="zoom-in">
-            <div class="relative w-[320px] h-[680px] bg-[#0b0e14] rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden neon-border">
+            <div class="iphone-mockup-frame">
                 
-                <div class="iphone-status-bar">
+                <div class="iphone-top-status">
                     <span>9:41</span>
-                    <div class="flex gap-1.5 items-center">
-                        <i class="fa-solid fa-signal text-[10px]"></i>
-                        <i class="fa-solid fa-wifi text-[10px]"></i>
-                        <i class="fa-solid fa-battery-full text-[12px] text-emerald-400"></i>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-signal text-[10px]"></i> 
+                        <i class="fa-solid fa-wifi text-[10px]"></i> 
+                        <i class="fa-solid fa-battery-full text-emerald-400 text-[12px]"></i>
                     </div>
                 </div>
 
-                <div class="iphone-header-chat">
-                    <i class="fa-solid fa-chevron-left text-sky-400 mr-4"></i>
-                    <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold mr-3 shadow-lg">B</div>
+                <div class="iphone-chat-header">
+                    <i class="fa-solid fa-chevron-left text-sky-400 mr-5 text-lg"></i>
+                    <div class="w-11 h-11 rounded-full overflow-hidden mr-4 border-2 border-white/20">
+                        <img src="assets/bela-admin.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100?text=BELA'">
+                    </div>
                     <div>
-                        <p class="text-white font-bold text-[12px] leading-none">BELA - ADMIN VIP</p>
-                        <p class="text-[9px] text-slate-400 mt-1"><span class="online-dot"></span>online</p>
+                        <p class="text-white font-black text-[13px] leading-none uppercase italic">BELA - ADMIN VIP</p>
+                        <p class="text-[10px] text-slate-400 mt-1.5"><span class="online-status-dot"></span>online</p>
                     </div>
                 </div>
 
-                <div class="p-3 h-[480px] overflow-y-auto space-y-4 text-[10px] chat-container pt-5">
-                    <div class="flex justify-end"><div class="bg-sky-600 p-3 rounded-2xl rounded-tr-none text-white w-fit shadow-md">Ready kak? Pengen join VVIP nih.</div></div>
-
-                    <div class="bg-[#262626] p-3 rounded-2xl rounded-tl-none border border-white/5 text-white w-[85%] shadow-lg">
-                        <p class="mb-2 italic text-sky-300 font-bold">Halo sayang! Tentu ready 24 jam otomatis.</p>
-                        <div class="space-y-1 bg-black/20 p-2 rounded-lg text-[9px] border border-white/5">
-                            <p>💎 VVIP SUPER MALAY - 150K</p>
-                            <p>💎 VVIP SUPER INDO - 100K</p>
+                <div id="chat-body" class="chat-container-smooth p-4 space-y-6 text-[9.5px] leading-relaxed pt-6">
+                    
+                    <div class="flex justify-end">
+                        <div class="bg-sky-600 p-3 rounded-2xl rounded-tr-none text-white w-fit shadow-xl font-bold">
+                            P, mau join VIP kak
                         </div>
                     </div>
 
-                    <div class="flex justify-end"><div class="bg-sky-600 p-3 rounded-2xl rounded-tr-none text-white w-fit shadow-md">Mau yang VVIP SUPER MALAY!</div></div>
+                    <div class="bg-gray-800 p-4 rounded-2xl rounded-tl-none border border-white/5 text-white w-[95%] shadow-2xl">
+                        <p class="text-sky-300 font-black text-[11px] mb-2 uppercase italic">Halo! aw*nk** Selamat Datang ya</p>
+                        <p class="mb-3 font-bold">Iya kak, mau join VIP ya? 👋</p>
+                        
+                        <p class="text-[8.5px] text-slate-400 mb-3">Pesan ini adalah <span class="text-white font-bold underline">SISTEM OTOMATIS</span>. Mohon ikuti langkah di bawah ini agar orderan Kakak bisa langsung diproses:</p>
+                        
+                        <div class="space-y-1.5 font-black text-white mb-4 bg-black/30 p-3 rounded-xl border border-white/5">
+                            <p>● VVIP SUPER INDO ➔ 150K IDR / RM42</p>
+                            <p>● VVIP SUPER MALAY ➔ 100K IDR / RM28</p>
+                            <p>● HIJAB PREMIUM ➔ 60K IDR / RM17</p>
+                            <p>● INDO PREMIUM ➔ 50K IDR / RM14</p>
+                            <p>● ASIAN DAIRY ➔ 45K IDR / RM12</p>
+                            <p>● CAMPURAN PREMIUM ➔ 50K IDR / RM14</p>
+                            <p>● ASIAN PREMIUM ➔ 60K IDR / RM17</p>
+                            <p>● LIVE RECORD ➔ 50K IDR / RM14</p>
+                            <p>● BARATT ➔ 45K IDR / RM12</p>
+                            <p>● ONLY FANS ➔ 50K IDR / RM14</p>
+                            <p>● SMP / SMA PREMIUM ➔ 60K IDR / RM17</p>
+                        </div>
 
-                    <div class="bg-[#262626] p-3 rounded-2xl rounded-tl-none border border-white/5 text-white w-[90%] shadow-lg">
-                        <p class="mb-2 italic text-pink-300">Silakan scan QR Pay ini ya:</p>
-                        <div class="bg-white/5 p-1 rounded-lg"><img src="assets/qr-pay.jpg" class="w-full rounded-md sensor-blur"></div>
+                        <p class="text-sky-400 font-black mb-2 uppercase text-[9px]">FORMAT ORDER (Silakan Balas Sekarang):</p>
+                        <div class="bg-black/40 p-3 rounded-xl border border-sky-500/20 text-slate-300 italic mb-3 space-y-2">
+                            <p class="font-bold text-white not-italic">BELI 1 PAKET</p>
+                            <p>Nama Paket: (Contoh: VVIP SUPER MALAY)</p>
+                            <p class="font-bold text-white not-italic mt-2">BELI 2+ PAKET ⬇️</p>
+                            <p>VVIP SUPER INDO + VVIP SUPER MALAY</p>
+                        </div>
+                        
+                        <p class="font-bold text-white mb-3 uppercase">Metode Pembayaran: <span class="text-emerald-400">QRIS</span></p>
+                        
+                        <p class="text-[9px] italic text-emerald-400 font-black border-t border-white/5 pt-2 text-center uppercase">Admin akan segera mengirimkan detail pembayaran! 🚀</p>
                     </div>
 
-                    <div class="flex justify-end"><div class="w-32 bg-sky-600 p-1 rounded-xl shadow-xl"><img src="assets/bukti-tf.jpg" class="w-full rounded-lg sensor-blur"></div></div>
+                    <div class="flex justify-end">
+                        <div class="bg-sky-600 p-3 rounded-2xl rounded-tr-none text-white w-fit shadow-xl font-black uppercase">
+                            Nama Paket: VVIP SUPER MALAY
+                        </div>
+                    </div>
 
-                    <div class="bg-[#262626] p-3 rounded-2xl rounded-tl-none border border-white/5 text-white w-[85%]">Pembayaran terverifikasi <span class="text-sky-400 font-bold italic">aw*nk**</span>. ✅</div>
+                    <div class="bg-gray-800 p-3 rounded-2xl rounded-tl-none border border-white/5 text-white w-[90%] shadow-xl">
+                        <p class="mb-2 italic text-pink-300 font-bold">Silakan scan QR Pay ini ya sayang:</p>
+                        <div class="bg-white p-1 rounded-xl">
+                            <img src="assets/qr-pay.jpg" class="w-full rounded-lg blur-sensor" onerror="this.src='https://via.placeholder.com/200?text=QRIS+PAYMENT'">
+                        </div>
+                    </div>
 
-                    <div class="bg-[#262626] p-4 rounded-2xl border border-emerald-500/20 text-white w-full shadow-2xl">
-                        <p class="font-bold mb-2 uppercase">Join Link VVIP SUPER MALAY :</p>
-                        <p class="text-sky-400 underline font-mono text-[9.5px] break-all">https://t.me/+7WjU32M_********</p>
-                        <p class="text-[8px] text-emerald-400 mt-2 italic">*Link hanya bisa digunakan 1 kali.</p>
+                    <div class="flex justify-end">
+                        <div class="w-36 bg-sky-600 p-1.5 rounded-2xl shadow-2xl border-2 border-white/10">
+                            <img src="assets/bukti-tf.jpg" class="w-full rounded-xl blur-sensor" onerror="this.src='https://via.placeholder.com/200?text=BUKTI+TF'">
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 p-4 rounded-2xl border border-white/5 text-white w-[95%] shadow-2xl">
+                        <p class="font-black mb-2 uppercase text-sky-400 text-[10px]">Join Link VVIP SUPER MALAY :</p>
+                        <p class="text-white underline font-mono break-all bg-black/30 p-2 rounded-lg">https://t.me/+7WjU32M_********</p>
+                    </div>
+
+                    <div class="bg-[#1c161d] p-5 rounded-3xl border-2 border-emerald-500/20 text-white w-full shadow-2xl text-center">
+                        <p class="mb-2 font-black italic text-emerald-400 text-[11px] uppercase">Terima kasih ya aw*nk** sudah join! 🙏</p>
+                        <p class="text-[9px] text-white/70 italic leading-relaxed">Akses aktif selamanya. Happy watching! ✅</p>
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 w-full p-3 bg-[#1a1a1a] flex items-center gap-3">
-                    <i class="fa-solid fa-plus text-sky-400 text-lg"></i>
-                    <div class="flex-1 bg-black rounded-full px-4 py-1.5 border border-white/10 text-slate-500 text-[10px]">Message...</div>
-                    <i class="fa-solid fa-camera text-sky-400 text-lg"></i>
+                <div class="absolute bottom-0 w-full p-5 bg-gray-900 flex items-center gap-4 border-t border-white/5">
+                    <i class="fa-solid fa-circle-plus text-sky-400 text-xl"></i>
+                    <div class="flex-1 bg-black/50 rounded-full py-2.5 px-5 text-[10px] text-slate-500 italic border border-white/5">Ketik pesan...</div>
+                    <i class="fa-solid fa-microphone text-sky-400 text-lg"></i>
                 </div>
             </div>
         </div>
 
-        <div class="space-y-8" data-aos="fade-left">
-            <div class="bg-glass-premium p-10 rounded-[3rem] shadow-2xl">
-                <h2 class="text-3xl font-black mb-10 italic text-white uppercase underline decoration-sky-500 decoration-4 underline-offset-8">EXCLUSIVE ACCESS BENEFITS</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 border border-sky-500/30"><i class="fa-solid fa-bolt"></i></div><div><h4 class="font-black text-white text-sm italic">Auto-Join</h4><p class="text-[11px] text-slate-400">Instan 24 Jam.</p></div></div>
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/30"><i class="fa-solid fa-video"></i></div><div><h4 class="font-black text-white text-sm italic">Ultra HD</h4><p class="text-[11px] text-slate-400">Kualitas 4K Murni.</p></div></div>
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 border border-purple-500/30"><i class="fa-solid fa-cloud-arrow-up"></i></div><div><h4 class="font-black text-white text-sm italic">Daily Update</h4><p class="text-[11px] text-slate-400">Konten Baru.</p></div></div>
-                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 border border-amber-500/30"><i class="fa-solid fa-infinity"></i></div><div><h4 class="font-black text-white text-sm italic">Lifetime</h4><p class="text-[11px] text-slate-400">Akses Selamanya.</p></div></div>
+        <div class="space-y-10" data-aos="fade-left">
+            <div class="bg-glass-card p-12 rounded-[3.5rem] shadow-3xl border border-white/10">
+                <h2 class="text-4xl font-black italic text-white uppercase mb-10 underline decoration-sky-500 decoration-8 underline-offset-[12px]">EXCLUSIVE BENEFITS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-sky-500/20 rounded-2xl flex items-center justify-center text-sky-400 border-2 border-sky-500/30 shadow-2xl">
+                            <i class="fa-solid fa-bolt text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-base italic uppercase">Auto-Join</h4>
+                            <p class="text-[12px] text-slate-400">Instan Tanpa Admin.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 border-2 border-emerald-500/30 shadow-2xl">
+                            <i class="fa-solid fa-video text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-base italic uppercase">Ultra HD 4K</h4>
+                            <p class="text-[12px] text-slate-400">Jernih Tanpa Sensor.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-amber-500/20 rounded-2xl flex items-center justify-center text-amber-400 border-2 border-amber-500/30 shadow-2xl">
+                            <i class="fa-solid fa-infinity text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-base italic uppercase">Lifetime</h4>
+                            <p class="text-[12px] text-slate-400">Akses Selamanya.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 border-2 border-purple-500/30 shadow-2xl">
+                            <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-base italic uppercase">Daily Update</h4>
+                            <p class="text-[12px] text-slate-400">Konten Baru Tiap Hari.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <a href="https://t.me/BELAA?text=Halo%20Bela,%20saya%20ingin%20tanya%20seputar%20VVIP" class="btn-cyber btn-dug block w-full py-8 rounded-[2.5rem] text-2xl shadow-3xl">
-                <i class="fa-solid fa-cart-shopping mr-3"></i> GET ACCESS NOW
+            
+            <a href="#vip-selection-monster" class="btn-premium-style btn-dug-effect block w-full py-9 text-center rounded-[3rem] text-3xl shadow-3xl">
+                <i class="fa-solid fa-list-check mr-4"></i> CEK PRICE LIST VIP
             </a>
         </div>
     </main>
 
-    <section class="max-w-7xl mx-auto px-6 py-24 relative z-10">
-        <div class="flex items-end gap-6 mb-20">
-            <h3 class="text-4xl md:text-5xl font-black uppercase italic text-white tracking-tighter">VIP SELECTION</h3>
-            <div class="h-[2px] flex-1 bg-gradient-to-r from-sky-500 to-transparent mb-2 opacity-30"></div>
+    <section id="vip-selection-monster" class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+        <div class="flex items-end gap-8 mb-24">
+            <h3 class="text-5xl md:text-7xl font-black uppercase italic text-white tracking-tighter">VIP SELECTION</h3>
+            <div class="h-[3px] flex-1 bg-gradient-to-r from-sky-500 to-transparent mb-3 opacity-30"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 items-start">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-32 gap-x-12">
             
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest animate-pulse-glow">TOP #1</div>
-                    <div class="image-container"><img src="assets/preview1.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">VVIP SUPER MALAY</h5><p class="text-sky-300 font-black text-lg italic mt-1">150K / RM40</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">5000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap slogan-pulse">BEST SELLER #1</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview2.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=VVIP+SUPER+MALAY'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">VVIP SUPER MALAY</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">100K / RM28</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=VVIP%20SUPER%20MALAY" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20VVIP%20SUPER%20MALAY" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest animate-pulse-glow">TOP #2</div>
-                    <div class="image-container"><img src="assets/preview2.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">VVIP SUPER INDO</h5><p class="text-sky-300 font-black text-lg italic mt-1">100K / RM27</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">10000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">TOP RATED</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview1.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=VVIP+SUPER+INDO'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">VVIP SUPER INDO</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">150K / RM42</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=VVIP%20SUPER%20INDO" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20VVIP%20SUPER%20INDO" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest">POPULAR</div>
-                    <div class="image-container"><img src="assets/preview5.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">HIJAB PREMIUM</h5><p class="text-sky-300 font-black text-lg italic mt-1">60K / RM16</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">5000+ Video</p></div>
+            <div class="flex flex-col h-full order-last lg:order-none" data-aos="fade-up">
+                <div class="bg-glass-card rounded-[3.5rem] border-2 border-sky-500/30 p-10 flex flex-col h-[780px] shadow-3xl relative overflow-hidden">
+                    <h4 class="text-sky-400 font-black text-center uppercase italic mb-8 border-b-2 border-sky-500/20 pb-6 text-xl">OFFICIAL PRICE LIST</h4>
+                    <div class="space-y-1.5 text-[12px] overflow-y-auto chat-container pr-3 flex-1 font-bold">
+                        <p class="text-sky-500 font-black uppercase text-[11px] mt-2 mb-4 tracking-[0.3em] italic">🔥 [ BEST SELLER ]</p>
+                        <a href="https://t.me/BELAA?text=VVIP%20SUPER%20MALAY" class="sidebar-price-item italic"><span>VVIP SUPER MALAY</span><span class="text-sky-400 font-black">100K / RM28</span></a>
+                        <a href="https://t.me/BELAA?text=VVIP%20SUPER%20INDO" class="sidebar-price-item italic"><span>VVIP SUPER INDO</span><span class="text-sky-400 font-black">150K / RM42</span></a>
+                        <a href="https://t.me/BELAA?text=SMP%20SMA%20PREMIUM" class="sidebar-price-item italic"><span>SMP / SMA PREMIUM</span><span class="text-sky-400 font-black">60K / RM17</span></a>
+                        <a href="https://t.me/BELAA?text=HIJAB%20PREMIUM" class="sidebar-price-item italic"><span>HIJAB PREMIUM</span><span class="text-sky-400 font-black">60K / RM17</span></a>
+                        <a href="https://t.me/BELAA?text=INDO%20PREMIUM" class="sidebar-price-item italic"><span>INDO PREMIUM</span><span class="text-sky-400 font-black">50K / RM14</span></a>
+                        <p class="text-sky-500 font-black uppercase text-[11px] mt-10 mb-4 tracking-[0.3em] italic">🌏 [ ASIAN & INT ]</p>
+                        <a href="https://t.me/BELAA?text=ASIAN%20PREMIUM" class="sidebar-price-item italic"><span>ASIAN PREMIUM</span><span class="text-sky-400 font-black">60K / RM17</span></a>
+                        <a href="https://t.me/BELAA?text=ASIAN%20DAIRY" class="sidebar-price-item italic"><span>ASIAN DAIRY</span><span class="text-sky-400 font-black">45K / RM12</span></a>
+                        <a href="https://t.me/BELAA?text=CAMPURAN%20PREMIUM" class="sidebar-price-item italic"><span>CAMPURAN PREMIUM</span><span class="text-sky-400 font-black">50K / RM14</span></a>
+                        <a href="https://t.me/BELAA?text=BARATT" class="sidebar-price-item italic"><span>BARATT</span><span class="text-sky-400 font-black">45K / RM12</span></a>
+                        <p class="text-sky-500 font-black uppercase text-[11px] mt-10 mb-4 tracking-[0.3em] italic">📸 [ LIVE & OF ]</p>
+                        <a href="https://t.me/BELAA?text=LIVE%20RECORD" class="sidebar-price-item italic"><span>LIVE RECORD</span><span class="text-sky-400 font-black">50K / RM14</span></a>
+                        <a href="https://t.me/BELAA?text=ONLY%20FANS" class="sidebar-price-item italic"><span>ONLY FANS</span><span class="text-sky-400 font-black">50K / RM14</span></a>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=HIJAB%20PREMIUM" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-8 bg-sky-500/10 border-2 border-sky-500/30 py-7 rounded-[2rem] text-sky-400 text-center font-black text-sm uppercase hover:bg-sky-500 btn-dug-effect italic shadow-lg">ORDER VIA BOT (AUTOMATIC)</a>
             </div>
 
-            <div class="flex flex-col h-full order-last" data-aos="fade-up">
-                <div class="bg-glass-premium rounded-[3rem] border border-sky-500/30 p-8 flex flex-col h-[750px] shadow-2xl relative overflow-hidden mt-5">
-                    <h4 class="text-sky-400 font-black text-center uppercase italic mb-6 border-b border-sky-500/20 pb-4">Official Price List</h4>
-                    <div class="space-y-1 text-[11px] overflow-y-auto chat-container pr-2 flex-1">
-                        <p class="text-sky-500 font-black uppercase text-[10px] mt-2 mb-2 tracking-widest">🔥 [ BEST SELLER ]</p>
-                        <a href="https://t.me/BELAA?text=VVIP%20SUPER%20MALAY" class="price-item btn-dug italic"><span>VVIP SUPER MALAY</span><span class="text-sky-400 font-black">150K / RM40</span></a>
-                        <a href="https://t.me/BELAA?text=VVIP%20SUPER%20INDO" class="price-item btn-dug italic"><span>VVIP SUPER INDO</span><span class="text-sky-400 font-black">100K / RM27</span></a>
-                        <a href="https://t.me/BELAA?text=SMA%20%26%20SMP%20NAKAL" class="price-item btn-dug italic"><span>SMA & SMP NAKAL</span><span class="text-sky-400 font-black">60K / RM16</span></a>
-                        <a href="https://t.me/BELAA?text=INDO%20PREMIUM" class="price-item btn-dug italic"><span>INDO PREMIUM</span><span class="text-sky-400 font-black">50K / RM13</span></a>
-                        <a href="https://t.me/BELAA?text=HIJAB%20PREMIUM" class="price-item btn-dug italic"><span>HIJAB PREMIUM</span><span class="text-sky-400 font-black">60K / RM16</span></a>
-                        <a href="https://t.me/BELAA?text=VVIP%20CAMPURAN" class="price-item btn-dug italic"><span>VVIP CAMPURAN</span><span class="text-sky-400 font-black">50K / RM13</span></a>
-                        <p class="text-sky-500 font-black uppercase text-[10px] mt-6 tracking-widest mb-2">🌏 [ ASIAN & INT ]</p>
-                        <a href="https://t.me/BELAA?text=ASIAN%20PREMIUM" class="price-item btn-dug italic"><span>ASIAN PREMIUM</span><span class="text-sky-400 font-black">60K / RM16</span></a>
-                        <a href="https://t.me/BELAA?text=BARAT" class="price-item btn-dug italic"><span>BARAT</span><span class="text-sky-400 font-black">45K / RM12</span></a>
-                        <a href="https://t.me/BELAA?text=ASIA%20DIARY" class="price-item btn-dug italic"><span>ASIA DIARY</span><span class="text-sky-400 font-black">45K / RM12</span></a>
-                        <p class="text-sky-500 font-black uppercase text-[10px] mt-6 tracking-widest mb-2">📸 [ LIVE RECORD ]</p>
-                        <a href="https://t.me/BELAA?text=LIVE%20RECORD" class="price-item btn-dug italic"><span>LIVE RECORD</span><span class="text-sky-400 font-black">50K / RM13</span></a>
-                        <a href="https://t.me/BELAA?text=ONLYFANS" class="price-item btn-dug italic"><span>ONLYFANS</span><span class="text-sky-400 font-black">50K / RM13</span></a>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">HIJAB LOVERS</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview3.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=HIJAB'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">HIJAB PREMIUM</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">60K / RM17</p>
                     </div>
                 </div>
-                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-6 bg-sky-500/10 border border-sky-500/30 py-5 rounded-3xl text-sky-400 text-center font-black text-xs uppercase hover:bg-sky-500 btn-dug italic">ORDER VIA BOT (AUTOMATIC)</a>
+                <a href="https://t.me/BELAA?text=ORDER%20HIJAB" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest animate-pulse-glow">TERLARIS</div>
-                    <div class="image-container"><img src="assets/preview3.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">INDO PREMIUM</h5><p class="text-sky-300 font-black text-lg italic mt-1">50K / RM13</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">2000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">LOKAL PRIDE</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview4.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=INDO'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">INDO PREMIUM</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">50K / RM14</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=INDO%20PREMIUM" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20INDO" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest animate-pulse-glow">TERLARIS</div>
-                    <div class="image-container"><img src="assets/preview4.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">SMA & SMP NAKAL</h5><p class="text-sky-300 font-black text-lg italic mt-1">60K / RM16</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">2000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">ASIA DIARY</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview5.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=DAIRY'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">ASIAN DAIRY</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">45K / RM12</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=SMA%20%26%20SMP%20NAKAL" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20DAIRY" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest">NEW</div>
-                    <div class="image-container"><img src="assets/preview6.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">VVIP CAMPURAN</h5><p class="text-sky-300 font-black text-lg italic mt-1">50K / RM13</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">4000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">CAMPURAN PREM</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview6.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=CAMPURAN'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">CAMPURAN PREMIUM</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">50K / RM14</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=VVIP%20CAMPURAN" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20CAMPURAN" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="image-container"><img src="assets/preview7.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">ASIAN PREMIUM</h5><p class="text-sky-300 font-black text-lg italic mt-1">60K / RM16</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">3500+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">NEW UPDATE</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview7.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=ASIAN'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">ASIAN PREMIUM</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">60K / RM17</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=ASIAN%20PREMIUM" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20ASIAN" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="image-container"><img src="assets/preview8.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">BARAT / WESTERN</h5><p class="text-sky-300 font-black text-lg italic mt-1">45K / RM12</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">3000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">LIVE COLLECTION</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview8.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=LIVE'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">LIVE RECORD</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">50K / RM14</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=BARAT%20WESTERN" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20LIVE" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="image-container"><img src="assets/preview9.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">ASIA DIARY</h5><p class="text-sky-300 font-black text-lg italic mt-1">45K / RM12</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">1500+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">BARAT CONTENT</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview9.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=BARATT'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">BARATT / WESTERN</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">45K / RM12</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=ASIA%20DIARY" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20BARATT" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="image-container"><img src="assets/preview10.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">LIVE RECORD</h5><p class="text-sky-300 font-black text-lg italic mt-1">50K / RM13</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">3000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap">PRIVATE CONTENT</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview10.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=OF'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic">ONLY FANS</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">50K / RM14</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=LIVE%20RECORD" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20OF" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
-            <div class="flex flex-col h-full group" data-aos="fade-up">
-                <div class="gallery-item-wrapper neon-border shadow-2xl">
-                    <div class="badge-exclusive font-black text-white uppercase tracking-widest">HOT</div>
-                    <div class="image-container"><img src="assets/preview11.jpg" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8"><h5 class="text-white font-black text-2xl uppercase italic">ONLYFANS PREMIUM</h5><p class="text-sky-300 font-black text-lg italic mt-1">50K / RM13</p><p class="text-white/60 text-[10px] font-bold uppercase mt-1">3000+ Video</p></div>
+            <div class="gallery-monster-container flex flex-col group" data-aos="fade-up">
+                <div class="badge-monster-overlap slogan-pulse">TOP HOT</div>
+                <div class="gallery-monster-wrapper shadow-3xl">
+                    <img src="assets/preview11.jpg" onerror="this.src='https://via.placeholder.com/500x700?text=SMA'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <h5 class="text-white font-black text-3xl uppercase italic text-[18px]">SMP / SMA PREMIUM</h5>
+                        <p class="text-sky-300 font-black text-xl italic mt-1.5">60K / RM17</p>
                     </div>
                 </div>
-                <a href="https://t.me/BELAA?text=ONLYFANS%20PREMIUM" class="btn-cyber btn-dug w-full py-5 rounded-3xl text-sm mt-6"><i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW</a>
+                <a href="https://t.me/BELAA?text=ORDER%20SMA" class="btn-premium-style btn-dug-effect w-full py-6 rounded-[1.5rem] text-sm mt-8 shadow-2xl font-black">BELI SEKARANG</a>
             </div>
 
         </div>
     </section>
 
-    <section class="max-w-4xl mx-auto px-4 py-24 text-center relative z-20" data-aos="zoom-in">
-        <div class="bg-glass-premium p-10 md:p-16 rounded-[3.5rem] shadow-3xl">
-            <h2 class="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-10 glow-text leading-tight">SIAP BERGABUNG?</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8">
-                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="btn-cyber btn-dug w-full md:w-auto py-5 px-12 rounded-full text-white text-xl shadow-2xl flex items-center justify-center transition-all hover:brightness-125"><i class="fa-solid fa-robot mr-3"></i> ORDER BOT</a>
-                <a href="https://t.me/BELAA" class="bg-white/5 border border-white/10 btn-dug w-full md:w-auto py-5 px-12 rounded-full text-white font-black text-xl italic uppercase hover:bg-white/10 transition-all flex items-center justify-center"><i class="fa-solid fa-user-shield mr-3"></i> HUBUNGI BELA</a>
+    <section class="max-w-4xl mx-auto px-6 py-24 text-center relative z-20" data-aos="zoom-in">
+        <div class="bg-glass-card p-12 md:p-16 rounded-[4rem] shadow-3xl">
+            <h2 class="text-5xl font-black text-white uppercase italic mb-10 leading-tight">SIAP BERGABUNG?</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="btn-premium-style btn-dug-effect w-full md:w-auto py-6 px-14 rounded-full text-xl shadow-2xl font-black italic"><i class="fa-solid fa-robot mr-4"></i> ORDER BOT</a>
+                <a href="https://t.me/BELAA" class="bg-white/5 border-2 border-white/10 btn-dug-effect w-full md:w-auto py-6 px-14 rounded-full text-white font-black text-xl italic uppercase hover:bg-white/10 transition-all flex items-center justify-center shadow-xl">
+                    <i class="fa-solid fa-user-shield mr-4"></i> HUBUNGI BELA
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 text-center opacity-40 border-t border-white/5 italic">
-        <p class="text-slate-400 text-[10px] uppercase tracking-[0.5em] font-bold">WarungLendir Official VIP Telegram &copy; 2026</p>
+    <footer class="py-20 text-center opacity-40 border-t border-white/5 italic">
+        <p class="text-slate-400 text-[11px] uppercase tracking-[0.6em] font-bold">WarungLendir Official Website &copy; 2026</p>
     </footer>
 
-    <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+    <audio id="dugAudio" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // SCRIPT ANIMASI TOMBOL (MAGNETIC POP)
-        const dugButtons = document.querySelectorAll('.btn-dug');
-        const sound = document.getElementById('clickSound');
+        // MAGNETIC DUG & HAPTIC
+        const buttons = document.querySelectorAll('.btn-dug-effect');
+        const dugSound = document.getElementById('dugAudio');
 
-        dugButtons.forEach(btn => {
+        buttons.forEach(btn => {
             btn.addEventListener('mousedown', () => {
-                if(sound) { sound.currentTime = 0; sound.play().catch(() => {}); }
-                if (window.navigator.vibrate) { window.navigator.vibrate([30, 10, 30]); }
+                if(dugSound) { dugSound.currentTime = 0; dugSound.play().catch(() => {}); }
+                if (window.navigator.vibrate) { window.navigator.vibrate([40, 10, 40]); }
             });
             btn.addEventListener('mouseup', () => {
                 btn.style.transform = 'scale(1.05)';
@@ -394,18 +674,18 @@
             });
         });
 
-        // SYSTEM NOTIFIKASI PALSU
-        const names = ["Andi", "Faisal", "Diky", "Asep", "Aw*nk", "Putra", "Rian", "Guntur", "Sopian", "Zul", "Baim", "Eko"];
-        const packs = ["VVIP SUPER MALAY", "VVIP SUPER INDO", "INDO PREMIUM", "SMA & SMP NAKAL", "HIJAB PREMIUM", "VVIP CAMPURAN"];
-        function showNotif() {
-            const notif = document.getElementById('purchase-notification');
-            const user = names[Math.floor(Math.random() * names.length)];
-            const pack = packs[Math.floor(Math.random() * packs.length)];
-            document.getElementById('notif-text').innerHTML = `<span class="text-sky-400 font-bold">${user}**</span> baru saja join <span class="text-white font-bold">${pack}</span>`;
-            notif.classList.add('show');
-            setTimeout(() => notif.classList.remove('show'), 5000);
+        // FAKE NOTIF
+        const dummyNames = ["Andi", "Faisal", "Diky", "Asep", "Aw*nk", "Putra", "Rian", "Guntur", "Sopian", "Zul", "Amirul"];
+        const dummyPacks = ["VVIP SUPER MALAY", "VVIP SUPER INDO", "HIJAB PREMIUM", "SMP / SMA PREMIUM", "ONLY FANS"];
+        function triggerNotif() {
+            const notif = document.getElementById('purchase-notif');
+            const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
+            const pack = dummyPacks[Math.floor(Math.random() * dummyPacks.length)];
+            document.getElementById('notif-user-text').innerHTML = `<span class="text-sky-400 font-black">${name}**</span> join <span class="text-white font-black">${pack}</span>`;
+            notif.classList.add('active');
+            setTimeout(() => { notif.classList.remove('active'); }, 5000);
         }
-        setInterval(showNotif, 15000);
+        setInterval(triggerNotif, 15000);
 
         AOS.init({ duration: 1000, once: true });
     </script>
