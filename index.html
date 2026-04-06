@@ -29,13 +29,11 @@
         }
         .video-wrapper video {
             width: 100%; height: 100%; object-fit: cover;
-            /* KECERAHAN DINAIKKAN KE 0.8 AGAR PC TERANG */
             filter: brightness(0.8) contrast(1.05) saturate(1.1); 
         }
         .video-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* OVERLAY DIBUAT SANGAT TIPIS (0.3 & 0.5) AGAR VIDEO TIDAK TERTUTUP GELAP */
             background: linear-gradient(to bottom, rgba(11, 14, 20, 0.3), rgba(11, 14, 20, 0.5));
             z-index: -1;
         }
@@ -77,7 +75,7 @@
             box-shadow: 0 0 25px rgba(56, 189, 248, 0.15); 
         }
         .bg-glass-premium { 
-            background: rgba(22, 28, 45, 0.55) !important; /* Transparansi ditingkatkan */
+            background: rgba(22, 28, 45, 0.55) !important;
             backdrop-filter: blur(12px) saturate(160%); 
             -webkit-backdrop-filter: blur(12px) saturate(160%);
             border: 1px solid rgba(255, 255, 255, 0.1); 
@@ -98,6 +96,30 @@
         .chat-container::-webkit-scrollbar { width: 3px; }
         .chat-container::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
         .sensor-blur { filter: blur(5px); opacity: 0.9; }
+
+        /* --- PRICE LIST HOVER EFFECT --- */
+        .price-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: inherit;
+        }
+        .price-item:hover {
+            background: rgba(14, 165, 233, 0.1);
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 8px;
+            border-bottom-color: rgba(14, 165, 233, 0.3);
+        }
+        .price-item:hover span:first-child {
+            color: white;
+            font-weight: bold;
+        }
 
         /* --- GALLERY --- */
         .gallery-item-wrapper {
@@ -216,7 +238,7 @@
                     </div>
                 </div>
             </div>
-            <a href="https://t.me/WARUNGLENDIR_ROBOT" class="btn-cyber block w-full py-8 rounded-[2.5rem] text-white text-center text-2xl shadow-3xl">
+            <a href="https://t.me/BELAA" class="btn-cyber block w-full py-8 rounded-[2.5rem] text-white text-center text-2xl shadow-3xl">
                 <i class="fa-solid fa-cart-shopping mr-3"></i> GET ACCESS NOW
             </a>
         </div>
@@ -228,24 +250,28 @@
             <div class="h-[2px] flex-1 bg-gradient-to-r from-sky-500 to-transparent mb-2 opacity-30"></div>
         </div>
         <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 items-start">
+            
             <div class="flex flex-col h-full order-last" data-aos="fade-up">
                 <div class="bg-slate-900/95 rounded-[3rem] border border-sky-500/30 p-8 flex flex-col h-[750px] shadow-2xl relative overflow-hidden mt-5">
                     <h4 class="text-sky-400 font-black text-center uppercase italic mb-6 border-b border-sky-500/20 pb-4">Official Price List</h4>
-                    <div class="space-y-4 text-[11px] overflow-y-auto chat-container pr-2 flex-1">
-                        <p class="text-sky-500 font-black uppercase text-[10px] tracking-widest">🔥 [ BEST SELLER ]</p>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>VVIP SUPER MALAY (5000+)</span><span class="text-sky-400 font-black">150K / RM40</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>VVIP SUPER INDO (10000+)</span><span class="text-sky-400 font-black">100K / RM27</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>SMA & SMP NAKAL (2000+)</span><span class="text-sky-400 font-black">60K / RM16</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>INDO PREMIUM (2000+)</span><span class="text-sky-400 font-black">50K / RM13</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>HIJAB PREMIUM (5000+)</span><span class="text-sky-400 font-black">60K / RM16</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>VVIP CAMPURAN (4000+)</span><span class="text-sky-400 font-black">50K / RM13</span></div>
-                        <p class="text-sky-500 font-black uppercase text-[10px] mt-4 tracking-widest">🌏 [ ASIAN & INT ]</p>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>ASIAN PREMIUM</span><span class="text-sky-400 font-black">60K / RM16</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>BARAT</span><span class="text-sky-400 font-black">45K / RM12</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>ASIA DIARY</span><span class="text-sky-400 font-black">45K / RM12</span></div>
-                        <p class="text-sky-500 font-black uppercase text-[10px] mt-4 tracking-widest">📸 [ LIVE ]</p>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>LIVE RECORD</span><span class="text-sky-400 font-black">50K / RM13</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>ONLYFANS</span><span class="text-sky-400 font-black">50K / RM13</span></div>
+                    <div class="space-y-2 text-[11px] overflow-y-auto chat-container pr-2 flex-1">
+                        <p class="text-sky-500 font-black uppercase text-[10px] tracking-widest mt-2">🔥 [ BEST SELLER ]</p>
+                        
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>VVIP SUPER MALAY (5000+)</span><span class="text-sky-400 font-black">150K / RM40</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>VVIP SUPER INDO (10000+)</span><span class="text-sky-400 font-black">100K / RM27</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>SMA & SMP NAKAL (2000+)</span><span class="text-sky-400 font-black">60K / RM16</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>INDO PREMIUM (2000+)</span><span class="text-sky-400 font-black">50K / RM13</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>HIJAB PREMIUM (5000+)</span><span class="text-sky-400 font-black">60K / RM16</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>VVIP CAMPURAN (4000+)</span><span class="text-sky-400 font-black">50K / RM13</span></a>
+
+                        <p class="text-sky-500 font-black uppercase text-[10px] mt-6 tracking-widest">🌏 [ ASIAN & INT ]</p>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>ASIAN PREMIUM (3500+)</span><span class="text-sky-400 font-black">60K / RM16</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>BARAT (3000+)</span><span class="text-sky-400 font-black">45K / RM12</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>ASIA DIARY (1500+)</span><span class="text-sky-400 font-black">45K / RM12</span></a>
+
+                        <p class="text-sky-500 font-black uppercase text-[10px] mt-6 tracking-widest">📸 [ LIVE ]</p>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>LIVE RECORD</span><span class="text-sky-400 font-black">50K / RM13</span></a>
+                        <a href="https://t.me/BELAA" class="price-item italic"><span>ONLYFANS</span><span class="text-sky-400 font-black">50K / RM13</span></a>
                     </div>
                 </div>
                 <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-6 bg-sky-500/10 border border-sky-500/30 py-5 rounded-3xl text-sky-400 text-center font-black text-xs uppercase hover:bg-sky-500 transition-all italic">ORDER VIA BOT</a>
@@ -295,7 +321,7 @@
                         ${badge}
                         <div class="image-container">
                             <img src="${item.img}" loading="lazy" alt="${item.name}">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                             <div class="absolute bottom-8 left-8 text-left z-30">
                                 <h5 class="text-white font-black text-2xl uppercase tracking-tighter leading-tight glow-text italic">${item.name}</h5>
                                 <p class="text-sky-300 font-black text-lg italic tracking-tighter uppercase mt-1">${item.price}</p>
@@ -303,7 +329,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="https://t.me/WARUNGLENDIR_ROBOT" class="btn-cyber w-full py-5 rounded-3xl text-white text-center text-sm shadow-lg mt-6">
+                    <a href="https://t.me/BELAA" class="btn-cyber w-full py-5 rounded-3xl text-white text-center text-sm shadow-lg mt-6">
                         <i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW
                     </a>
                 </div>`;
