@@ -91,6 +91,12 @@
             z-index: 50;
             filter: brightness(1.2) !important;
             display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .btn-cyber:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.4) !important;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.5);
         }
 
         .chat-container::-webkit-scrollbar { width: 3px; }
@@ -234,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <a href="https://t.me/BELAA" class="btn-cyber block w-full py-8 rounded-[2.5rem] text-white text-center text-2xl shadow-3xl">
+            <a href="https://t.me/BELAA?text=Halo%20Bela,%20saya%20ingin%20tanya%20seputar%20VVIP" class="btn-cyber block w-full py-8 rounded-[2.5rem] text-white text-center text-2xl shadow-3xl">
                 <i class="fa-solid fa-cart-shopping mr-3"></i> GET ACCESS NOW
             </a>
         </div>
@@ -270,7 +276,7 @@
                         <a href="https://t.me/BELAA?text=ONLYFANS" class="price-item italic"><span>ONLYFANS</span><span class="text-sky-400 font-black">50K / RM13</span></a>
                     </div>
                 </div>
-                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-6 bg-sky-500/10 border border-sky-500/30 py-5 rounded-3xl text-sky-400 text-center font-black text-xs uppercase hover:bg-sky-500 transition-all italic">ORDER VIA BOT</a>
+                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-6 bg-sky-500/10 border border-sky-500/30 py-5 rounded-3xl text-sky-400 text-center font-black text-xs uppercase hover:bg-sky-500 transition-all italic">ORDER VIA BOT (AUTOMATIC)</a>
             </div>
         </div>
     </section>
@@ -311,9 +317,9 @@
             const pulseClass = isHot ? 'animate-pulse-glow' : '';
             const badge = item.status ? `<div class="badge-exclusive font-black text-white italic uppercase tracking-widest ${pulseClass}">${item.status}</div>` : '';
             
-            // Generate link dengan pesan otomatis untuk Gallery
-            const msg = encodeURIComponent(item.name);
-            const tgLink = `https://t.me/BELAA?text=${msg}`;
+            // FITUR PESAN OTOMATIS UNTUK TOMBOL BUY NOW
+            const encodedMsg = encodeURIComponent(item.name);
+            const tgBuyLink = `https://t.me/BELAA?text=${encodedMsg}`;
 
             const cardHtml = `
                 <div class="flex flex-col h-full group" data-aos="fade-up">
@@ -321,7 +327,7 @@
                         ${badge}
                         <div class="image-container">
                             <img src="${item.img}" loading="lazy" alt="${item.name}">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                             <div class="absolute bottom-8 left-8 text-left z-30">
                                 <h5 class="text-white font-black text-2xl uppercase tracking-tighter leading-tight glow-text italic">${item.name}</h5>
                                 <p class="text-sky-300 font-black text-lg italic tracking-tighter uppercase mt-1">${item.price}</p>
@@ -329,7 +335,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="${tgLink}" class="btn-cyber w-full py-5 rounded-3xl text-white text-center text-sm shadow-lg mt-6">
+                    <a href="${tgBuyLink}" class="btn-cyber w-full py-5 rounded-3xl text-white text-center text-sm shadow-lg mt-6">
                         <i class="fa-solid fa-cart-shopping mr-2"></i> BUY NOW
                     </a>
                 </div>`;
