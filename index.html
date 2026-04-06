@@ -34,7 +34,7 @@
         .video-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(11, 14, 20, 0.6), rgba(11, 14, 20, 0.85));
+            background: linear-gradient(to bottom, rgba(11, 14, 20, 0.7), rgba(11, 14, 20, 0.9));
             z-index: -1;
         }
 
@@ -44,42 +44,39 @@
             box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); 
         }
         .bg-glass { 
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
         }
-        .glow-text { text-shadow: 0 0 15px rgba(56, 189, 248, 0.6); }
+        .glow-text { text-shadow: 0 0 15px rgba(56, 189, 248, 0.8); }
         
+        /* FIX TOMBOL GELAP: Menambahkan Z-Index tinggi & warna solid */
         .btn-cyber {
-    background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%) !important;
-    color: #ffffff !important; /* Pastikan teks putih bersih */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-transform: uppercase;
-    font-weight: 900;
-    font-style: italic;
-    
-    /* SOLUSI UTAMA: */
-    position: relative;
-    z-index: 99; /* Angka tinggi agar di atas video-overlay */
-    opacity: 1 !important;
-    filter: brightness(1); /* Menghilangkan efek filter dari parent jika ada */
-}
-
-.btn-cyber i {
-    color: #ffffff !important; /* Pastikan icon keranjang juga putih */
-    opacity: 1 !important;
-}
+            background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%) !important;
+            color: #ffffff !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            font-weight: 900;
+            font-style: italic;
+            position: relative;
+            z-index: 50; /* Di atas segalanya */
+            opacity: 1 !important;
+            filter: brightness(1) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .btn-cyber:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.5);
-            filter: brightness(1.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.6);
+            filter: brightness(1.2) !important;
         }
 
         .chat-container::-webkit-scrollbar { width: 3px; }
         .chat-container::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
 
         .sensor-blur {
-            filter: blur(3.5px);
+            filter: blur(4px);
             opacity: 0.95;
         }
 
@@ -98,7 +95,6 @@
         
         .gallery-item-wrapper:hover {
             border-color: #0ea5e9;
-            transform: translateY(-5px);
         }
 
         .image-container {
@@ -114,12 +110,12 @@
             height: 100%;
             object-fit: cover;
             object-position: center top;
-            opacity: 0.6;
-            transition: all 1s ease;
+            opacity: 0.5;
+            transition: all 0.8s ease;
         }
 
         .gallery-item-wrapper:hover img {
-            opacity: 1;
+            opacity: 0.85;
             transform: scale(1.05);
         }
 
@@ -127,17 +123,14 @@
             position: absolute;
             top: -15px; 
             right: 20px;
-            background: linear-gradient(90deg, #0ea5e9 0%, #2dd4bf 100%);
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.5);
+            background: linear-gradient(90deg, #f43f5e 0%, #fb923c 100%);
+            box-shadow: 0 8px 20px rgba(244, 63, 94, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 6px 18px;
             border-radius: 99px;
             z-index: 60;
+            font-size: 10px;
         }
-
-        /* Perbaikan Rendering AOS */
-        [data-aos] { pointer-events: none; }
-        [data-aos].aos-animate { pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -164,6 +157,7 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-10">
+        
         <div class="flex justify-center" data-aos="zoom-in">
             <div class="relative w-80 h-[720px] bg-slate-950 rounded-[3.5rem] border-[12px] border-slate-900 shadow-2xl overflow-hidden neon-border">
                 <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 rounded-b-3xl w-36 mx-auto z-30"></div>
@@ -176,15 +170,19 @@
                             <p class="text-emerald-500 text-[8px] font-bold mt-1 uppercase tracking-widest">Online</p>
                         </div>
                     </div>
-                    <div class="bg-slate-800/80 p-3 rounded-2xl rounded-tr-none text-right ml-12 border border-slate-700 text-white shadow-sm">
-                        <p>Bela, mau request join <span class="text-sky-400 font-black italic uppercase">VVIP SUPER MALAY</span> dong.</p>
+
+                    <div class="bg-slate-800/80 p-3 rounded-2xl rounded-tr-none text-right ml-12 border border-slate-700 text-white">
+                        <p>Bela, mau request join <span class="text-sky-400 font-black italic uppercase">VVIP SUPER MALAY</span>.</p>
                     </div>
-                    <div class="bg-pink-500/10 p-3 rounded-2xl rounded-tl-none border border-pink-500/20 text-white w-[88%] shadow-md">
-                        <p class="mb-2 italic">Boleh sayang! Silakan scan QR Pay ini ya:</p>
+
+                    <div class="bg-pink-500/10 p-3 rounded-2xl rounded-tl-none border border-pink-500/20 text-white w-[88%]">
+                        <p class="mb-2 italic">Silakan scan QR Pay ini ya:</p>
                         <img src="assets/qr-pay.jpg" class="w-full rounded-lg sensor-blur border border-white/5">
                     </div>
+
                     <div class="bg-emerald-500/10 p-4 rounded-2xl border border-emerald-500/20 text-white shadow-xl">
-                        <p class="mb-3 font-bold italic">Terima kasih banyak! Link akses aktif otomatis. ✅</p>
+                        <p class="font-bold italic text-emerald-400">Akses Aktif Otomatis! ✅</p>
+                        <p class="text-[9px] mt-2">Cek link yang dikirim bot di Telegram kamu.</p>
                     </div>
                 </div>
                 <div class="absolute bottom-3 inset-x-0 h-1.5 bg-white/20 w-32 mx-auto rounded-full z-30"></div>
@@ -193,7 +191,7 @@
 
         <div class="space-y-8" data-aos="fade-left">
             <div class="bg-glass p-10 rounded-[3rem] border border-white/10 shadow-2xl">
-                <h2 class="text-3xl font-black mb-10 italic text-white uppercase underline decoration-sky-500 decoration-4 underline-offset-8">ELITE PRIVILEGE</h2>
+                <h2 class="text-3xl font-black mb-10 italic text-white uppercase underline decoration-sky-500 decoration-4 underline-offset-8 text-center md:text-left">ELITE PRIVILEGE</h2>
                 <div class="space-y-10">
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 bg-sky-500/20 rounded-2xl flex items-center justify-center text-sky-400 border border-sky-500/30 shadow-lg"><i class="fa-solid fa-bolt text-2xl"></i></div>
@@ -201,7 +199,7 @@
                     </div>
                     <div class="flex items-center gap-6">
                         <div class="w-14 h-14 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 border border-emerald-500/30 shadow-lg"><i class="fa-solid fa-video text-2xl"></i></div>
-                        <div><h4 class="font-black text-white text-xl uppercase italic">Ultra HD Quality</h4><p class="text-sm text-slate-400">Kualitas 4K tajam, tanpa iklan & Lifetime Access.</p></div>
+                        <div><h4 class="font-black text-white text-xl uppercase italic">Ultra HD Quality</h4><p class="text-sm text-slate-400">Kualitas 4K tajam & Lifetime Access.</p></div>
                     </div>
                 </div>
             </div>
@@ -225,10 +223,21 @@
                         <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>VVIP SUPER MALAY</span><span class="text-sky-400 font-black">150K / RM40</span></div>
                         <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>VVIP SUPER INDO</span><span class="text-sky-400 font-black">100K / RM27</span></div>
                         <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>SMA & SMP NAKAL</span><span class="text-sky-400 font-black">60K / RM16</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>ONLYFANS</span><span class="text-sky-400 font-black">50K / RM13</span></div>
+                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>INDO PREMIUM</span><span class="text-sky-400 font-black">50K / RM13</span></div>
+                        <div class="flex justify-between border-b border-white/5 pb-2 italic"><span>ONLYFANS CONTENT</span><span class="text-sky-400 font-black">50K / RM13</span></div>
                     </div>
                 </div>
                 <a href="https://t.me/WARUNGLENDIR_ROBOT" class="mt-6 bg-sky-500/10 border border-sky-500/30 py-5 rounded-3xl text-sky-400 text-center font-black text-xs uppercase tracking-widest hover:bg-sky-500 hover:text-white shadow-lg transition-all italic">ORDER VIA BOT</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-24 text-center" data-aos="zoom-in">
+        <div class="bg-black/60 backdrop-blur-3xl p-10 md:p-16 rounded-[3.5rem] border border-white/5 shadow-3xl">
+            <h2 class="text-5xl font-black text-white uppercase italic tracking-tighter mb-10">SIAP BERGABUNG?</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <a href="https://t.me/WARUNGLENDIR_ROBOT" class="btn-cyber py-7 px-14 rounded-full text-white text-2xl shadow-2xl italic"><i class="fa-solid fa-robot mr-3"></i> ORDER BOT</a>
+                <a href="https://t.me/BELAA" class="bg-white/5 border border-white/10 py-7 px-14 rounded-full text-white font-black text-2xl italic uppercase hover:bg-white/10 transition-all shadow-xl"><i class="fa-solid fa-user-shield mr-3"></i> HUBUNGI BELA</a>
             </div>
         </div>
     </section>
@@ -255,9 +264,9 @@
 
         const container = document.getElementById('gallery-container');
         
-        // Memperbaiki cara render agar lebih ringan dan tidak merusak warna tombol
+        // Loop render dengan sistem insert yang lebih rapi
         premiumItems.forEach((item) => {
-            const badge = item.status ? `<div class="badge-exclusive text-[9px] font-black text-white italic uppercase tracking-widest">${item.status}</div>` : '';
+            const badge = item.status ? `<div class="badge-exclusive font-black text-white italic uppercase tracking-widest">${item.status}</div>` : '';
             
             const cardHtml = `
                 <div class="flex flex-col h-full group" data-aos="fade-up">
@@ -265,7 +274,7 @@
                         ${badge}
                         <div class="image-container">
                             <img src="${item.img}" loading="lazy" alt="${item.name}">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                             <div class="absolute bottom-8 left-8 text-left z-30">
                                 <h5 class="text-white font-black text-2xl uppercase tracking-tighter leading-tight glow-text italic">${item.name}</h5>
                                 <p class="text-sky-300 font-black text-lg italic tracking-tighter uppercase mt-1">${item.price}</p>
