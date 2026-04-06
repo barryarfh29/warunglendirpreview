@@ -51,15 +51,24 @@
         .glow-text { text-shadow: 0 0 15px rgba(56, 189, 248, 0.6); }
         
         .btn-cyber {
-            background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
-            font-weight: 900;
-            font-style: italic;
-            position: relative;
-            z-index: 50; /* Memastikan tombol di atas overlay */
-            opacity: 1 !important; /* Mencegah tombol terlihat gelap/transparan */
-        }
+    background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%) !important;
+    color: #ffffff !important; /* Pastikan teks putih bersih */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    font-weight: 900;
+    font-style: italic;
+    
+    /* SOLUSI UTAMA: */
+    position: relative;
+    z-index: 99; /* Angka tinggi agar di atas video-overlay */
+    opacity: 1 !important;
+    filter: brightness(1); /* Menghilangkan efek filter dari parent jika ada */
+}
+
+.btn-cyber i {
+    color: #ffffff !important; /* Pastikan icon keranjang juga putih */
+    opacity: 1 !important;
+}
         .btn-cyber:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(14, 165, 233, 0.5);
