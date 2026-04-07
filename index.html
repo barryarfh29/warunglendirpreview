@@ -746,19 +746,17 @@
         AOS.init({ duration: 1000, once: true });
     </script>
 <script>
-        // Perintah ini menyuruh HP: "Tunggu sampai semuanya loading 100% dulu!"
-        window.addEventListener('load', function() {
-            const tg = window.Telegram.WebApp;
-            
-            // Lapor ke Telegram bahwa loading sudah selesai
+        const tg = window.Telegram.WebApp;
+        
+        // Langsung perintahkan untuk full screen
+        tg.expand();
+        tg.setHeaderColor('#000000');
+
+        // PAKSA Telegram melapor "Ready" dalam waktu 0.5 detik saja!
+        // Tidak peduli video sudah selesai loading atau belum.
+        setTimeout(function() {
             tg.ready();
-            
-            // Buka Full Screen
-            tg.expand();
-            
-            // Set warna header
-            tg.setHeaderColor('#000000');
-        });
+        }, 500);
     </script>
 </body>
 </html>
