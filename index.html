@@ -315,7 +315,7 @@
     </div>
 
     <div class="video-bg-container">
-        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+        <video autoplay loop muted playsinline>
             <source src="assets/bg-cewe.mp4" type="video/mp4">
         </video>
     </div>
@@ -746,10 +746,19 @@
         AOS.init({ duration: 1000, once: true });
     </script>
 <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-        tg.setHeaderColor('#000000'); 
-        tg.ready();
+        // Perintah ini menyuruh HP: "Tunggu sampai semuanya loading 100% dulu!"
+        window.addEventListener('load', function() {
+            const tg = window.Telegram.WebApp;
+            
+            // Lapor ke Telegram bahwa loading sudah selesai
+            tg.ready();
+            
+            // Buka Full Screen
+            tg.expand();
+            
+            // Set warna header
+            tg.setHeaderColor('#000000');
+        });
     </script>
 </body>
 </html>
